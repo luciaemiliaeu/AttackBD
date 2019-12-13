@@ -33,8 +33,8 @@ c = data_attack.groupby('label')
 data_attack = c.apply(lambda x: x.sample(n = c.size().min()).reset_index(drop=True))
 data_attack.to_csv('data_attackv3.csv', index=False, sep =';')
 
-'''
 
+#-- Tratamento de atributos - Parte I
 data_attack = pd.read_csv('data_attackv3.csv', sep=';')
 
 # Substituindo o endereço ipv6 pela primeira parte
@@ -53,7 +53,6 @@ data_attack.loc[index, 'mqtt_msgtype'] = data_attack.loc[index, :].apply(lambda 
 index = data_attack[(data_attack['mqtt_retain'].isnull() == False)].index
 data_attack.loc[index, 'mqtt_retain'] = data_attack.loc[index, :].apply(lambda x: len(str(x['mqtt_retain']).split(",")), axis=1)
 
-
 # Substituindo missin values por 0 - ausência de flags nos campos
 index = data_attack[(data_attack['mqtt_dupflag'].isnull() == True)].index
 data_attack.loc[index, 'mqtt_dupflag'] = data_attack.loc[index, :].apply(lambda x: 0, axis=1)
@@ -67,8 +66,6 @@ index = data_attack[(data_attack['mqtt_retain'].isnull() == True)].index
 data_attack.loc[index, 'mqtt_retain'] = data_attack.loc[index, :].apply(lambda x: 0, axis=1)
 index = data_attack[(data_attack['mqtt_kalive'].isnull() == True)].index
 data_attack.loc[index, 'mqtt_kalive'] = data_attack.loc[index, :].apply(lambda x: 0, axis=1)
-#index = data_attack[(data_attack['mqtt_topic_len'].isnull() == True)].index
-#data_attack.loc[index, 'mqtt_topic_len'] = data_attack.loc[index, :].apply(lambda x: 0, axis=1)
 
 # Tratando mqtt
 data_attack['mqtt_len_flag'] = data_attack.loc[:,:].apply(lambda x: len(str(x['mqtt_len']).split(",")), axis=1)
@@ -77,3 +74,62 @@ data_attack.loc[data_attack[(data_attack['mqtt_len_null']==True)].index,'mqtt_le
 data_attack.drop('mqtt_len', axis=1, inplace=True)
 
 data_attack.to_csv('data_attackv4.csv', index=False, sep =',')
+
+'''
+#-- Tratamento de atributos - Parte II
+
+data_attack = pd.read_csv('data_attackv4.csv', sep =',')
+
+# Tratando nominais 
+selec = data_attack[(data_attack['ipv6_src']=='fd9e')].index
+not_selec = data_attack[(data_attack['ipv6_src']!='fd9e')].index
+data_attack.loc[selec, 'ipv6_src_fd'] = data_attack.loc[selec,:].apply(lambda x: 1, axis=1)
+data_attack.loc[not_selec, 'ipv6_src_fd'] = data_attack.loc[not_selec,:].apply(lambda x: 0, axis=1)
+
+selec = data_attack[(data_attack['ipv6_src']=='fe80')].index
+not_selec = data_attack[(data_attack['ipv6_src']!='fe80')].index
+data_attack.loc[selec, 'ipv6_src_fe'] = data_attack.loc[selec,:].apply(lambda x: 1, axis=1)
+data_attack.loc[not_selec, 'ipv6_src_fe'] = data_attack.loc[not_selec,:].apply(lambda x: 0, axis=1)
+data_attack.drop('ipv6_src', axis =1, inplace=True)
+
+selec = data_attack[(data_attack['ipv6_dst']=='fd9e')].index
+not_selec = data_attack[(data_attack['ipv6_dst']!='fd9e')].index
+data_attack.loc[selec, 'ipv6_dst_fd'] = data_attack.loc[selec,:].apply(lambda x: 1, axis=1)
+data_attack.loc[not_selec, 'ipv6_dst_fd'] = data_attack.loc[not_selec,:].apply(lambda x: 0, axis=1)
+
+selec = data_attack[(data_attack['ipv6_dst']=='fe80')].index
+not_selec = data_attack[(data_attack['ipv6_dst']!='fe80')].index
+data_attack.loc[selec, 'ipv6_dst_fe'] = data_attack.loc[selec,:].apply(lambda x: 1, axis=1)
+data_attack.loc[not_selec, 'ipv6_dst_fe'] = data_attack.loc[not_selec,:].apply(lambda x: 0, axis=1)
+
+selec = data_attack[(data_attack['ipv6_dst']=='ff02')].index
+not_selec = data_attack[(data_attack['ipv6_dst']!='ff02')].index
+data_attack.loc[selec, 'ipv6_dst_ff'] = data_attack.loc[selec,:].apply(lambda x: 1, axis=1)
+data_attack.loc[not_selec, 'ipv6_dst_ff'] = data_attack.loc[not_selec,:].apply(lambda x: 0, axis=1)
+data_attack.drop('ipv6_dst', axis =1, inplace=True)
+
+selec = data_attack[(data_attack['mqtt_len_null']==True)].index
+not_selec = data_attack[(data_attack['mqtt_len_null']==False)].index
+data_attack.loc[selec,:'mqtt_len_null'] = 1
+data_attack.loc[not_selec,'mqtt_len_null'] = 0
+
+normal = data_attack[(data_attack['label']=='normal')].index
+bruteforce = data_attack[(data_attack['label']=='bruteforce')].index
+enumeration = data_attack[(data_attack['label']=='enumeration')].index
+mitm = data_attack[(data_attack['label']=='mitm')].index
+DoS = data_attack[(data_attack['label']=='DoS')].index
+data_attack.loc[normal,'label'] = 0
+data_attack.loc[bruteforce,'label'] = 1
+data_attack.loc[enumeration,'label'] = 2
+data_attack.loc[mitm,'label'] = 3
+data_attack.loc[DoS,'label'] = 4
+
+data_attack= data_attack.astype('int64')
+data_attack.to_csv('data_attackv5.csv', index=False, sep =',')
+
+print(data_attack)
+print(data_attack.info())
+
+for i in data_attack.columns:
+	print(i,':', data_attack[i].unique())
+
