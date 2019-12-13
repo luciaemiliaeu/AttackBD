@@ -1,0 +1,10 @@
+ipv6.nxt, plen(ok) - se for alto pode indicar ataque - não assume zero (colocar um valor muito alto quando for ataque)
+frame.len, mqtt.kalive, mqtt.topc_len - se for alto pode ser ataque (alto prox. do limite - da pra discretizar)
+mqtt.dupflag, mqtt.hdrflag, mqtt.msgid, mqtt.msgtype, retain - se tiver mais de uma informação no campo pode ser ataque, as informações são separadas por vírgula ( tratar isso ) - não interessa o valor
+mqtt.len - se tiver mais de uma informação no campo pode ser ataque, as informações são separadas por vírgula ( tratar isso ) -  interessa o valor, se for maior que o limite
+
+
+ipv6.src, ipv6.dst, todos os mqtt: não tem valor quando é ataque 
+
+v2 - sem atributos irrelevantes 
+v3 - balanceada
