@@ -108,10 +108,9 @@ data_attack.loc[selec, 'ipv6_dst_ff'] = data_attack.loc[selec,:].apply(lambda x:
 data_attack.loc[not_selec, 'ipv6_dst_ff'] = data_attack.loc[not_selec,:].apply(lambda x: 0, axis=1)
 data_attack.drop('ipv6_dst', axis =1, inplace=True)
 
-selec = data_attack[(data_attack['mqtt_len_null']==True)].index
-not_selec = data_attack[(data_attack['mqtt_len_null']==False)].index
-data_attack.loc[selec,:'mqtt_len_null'] = 1
-data_attack.loc[not_selec,'mqtt_len_null'] = 0
+selec = (data_attack['mqtt_len_null']==True)
+data_attack.loc[data_attack[selec].index,'mqtt_len_null'] = 1
+data_attack.loc[data_attack[~selec].index,'mqtt_len_null'] = 0
 
 normal = data_attack[(data_attack['label']=='normal')].index
 bruteforce = data_attack[(data_attack['label']=='bruteforce')].index
@@ -127,7 +126,9 @@ data_attack.loc[DoS,'label'] = 4
 data_attack= data_attack.astype('int64')
 data_attack.to_csv('data_attackv5.csv', index=False, sep =',')
 
-print(data_attack)
+
+data_attack = pd.read_csv('data_attackv5.csv', sep =',')
+print(data_attack['label'].value_counts())
 print(data_attack.info())
 
 for i in data_attack.columns:
