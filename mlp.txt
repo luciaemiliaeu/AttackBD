@@ -1,0 +1,319 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.MultilayerPerceptron -L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H a
+Relation:     data_attackv4
+Instances:    44850
+Attributes:   14
+              ipv6_plen
+              ipv6_nxt
+              ipv6_src
+              ipv6_dst
+              frame_len
+              mqtt_dupflag
+              mqtt_hdrflags
+              mqtt_kalive
+              mqtt_msgid
+              mqtt_msgtype
+              mqtt_retain
+              label
+              mqtt_len_flag
+              mqtt_len_null
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Sigmoid Node 0
+    Inputs    Weights
+    Threshold    10.385580106946946
+    Node 5    -19.53261070535039
+    Node 6    19.601657937045132
+    Node 7    -4.115239521729165
+    Node 8    -1.6868649595343874
+    Node 9    -4.353908591477208
+    Node 10    -1.2154608259062925
+    Node 11    22.19366142465838
+    Node 12    -9.923467938762759
+    Node 13    0.7415939759530217
+    Node 14    -35.33038739264087
+Sigmoid Node 1
+    Inputs    Weights
+    Threshold    -6.856065149683344
+    Node 5    -62.83431231310773
+    Node 6    12.934812437855701
+    Node 7    -0.6293114471826043
+    Node 8    -2.598826709821057
+    Node 9    -1.1940017705265245
+    Node 10    8.314626218675004
+    Node 11    -30.329011930928043
+    Node 12    6.2812699133245316
+    Node 13    -8.003773689614404
+    Node 14    2.945268805262118
+Sigmoid Node 2
+    Inputs    Weights
+    Threshold    -0.385021911312436
+    Node 5    -8.496134500612383
+    Node 6    4.892383784133574
+    Node 7    6.3216396128159085
+    Node 8    -2.6879515399180702
+    Node 9    6.405976360834545
+    Node 10    -2.178867416269339
+    Node 11    -15.597350375293635
+    Node 12    1.0382954391653672
+    Node 13    -3.6350219503889702
+    Node 14    -1.4009709900389635
+Sigmoid Node 3
+    Inputs    Weights
+    Threshold    -9.080839867277533
+    Node 5    -3.003375447850873
+    Node 6    -4.244235726128681
+    Node 7    -1.2347603593301142
+    Node 8    6.86136484288275
+    Node 9    -0.5865014250310621
+    Node 10    5.752963748032317
+    Node 11    3.8555025904936975
+    Node 12    -0.12069633825163155
+    Node 13    3.1781108976209076
+    Node 14    -4.073417076925524
+Sigmoid Node 4
+    Inputs    Weights
+    Threshold    2.069497543354435
+    Node 5    -10.667159677872592
+    Node 6    -22.097624982014135
+    Node 7    -1.2268351455209472
+    Node 8    -6.385000246188911
+    Node 9    -1.1945625213193283
+    Node 10    -17.06131806229707
+    Node 11    1.689458336619688
+    Node 12    -13.627356284976512
+    Node 13    15.478256413907898
+    Node 14    -0.7714574487051504
+Sigmoid Node 5
+    Inputs    Weights
+    Threshold    9.142785094423946
+    Attrib ipv6_plen    35.71461417167617
+    Attrib ipv6_nxt    -9.742437577504298
+    Attrib ipv6_src=fe80    -9.55060691084516
+    Attrib ipv6_dst=fd9e    9.611974937794503
+    Attrib ipv6_dst=fe80    -9.48845364140007
+    Attrib ipv6_dst=ff02    -9.28908315956955
+    Attrib frame_len    35.76657286489296
+    Attrib mqtt_dupflag    -19.056096651940717
+    Attrib mqtt_hdrflags    5.561499924574279
+    Attrib mqtt_kalive    -10.895322904907268
+    Attrib mqtt_msgid    30.90970955093457
+    Attrib mqtt_msgtype    5.477452472391804
+    Attrib mqtt_retain    -12.178605439554781
+    Attrib mqtt_len_flag    5.519376569927167
+    Attrib mqtt_len_null=True    -11.078999760633456
+Sigmoid Node 6
+    Inputs    Weights
+    Threshold    21.6772025464351
+    Attrib ipv6_plen    127.2871582699703
+    Attrib ipv6_nxt    -28.578243511197403
+    Attrib ipv6_src=fe80    -22.36059716774577
+    Attrib ipv6_dst=fd9e    22.50427443608243
+    Attrib ipv6_dst=fe80    -22.231637888320382
+    Attrib ipv6_dst=ff02    -21.90107632835632
+    Attrib frame_len    127.33948143661713
+    Attrib mqtt_dupflag    -17.84068563104131
+    Attrib mqtt_hdrflags    -23.78977794549745
+    Attrib mqtt_kalive    3.7945609943930747
+    Attrib mqtt_msgid    -0.4723569406754308
+    Attrib mqtt_msgtype    -23.83952874067566
+    Attrib mqtt_retain    -20.134180415688817
+    Attrib mqtt_len_flag    -23.76033057409122
+    Attrib mqtt_len_null=True    9.426655439308183
+Sigmoid Node 7
+    Inputs    Weights
+    Threshold    -0.05302997706924676
+    Attrib ipv6_plen    -0.20717625586087943
+    Attrib ipv6_nxt    -0.6383297209252695
+    Attrib ipv6_src=fe80    -0.3040175046767471
+    Attrib ipv6_dst=fd9e    0.3418478190821507
+    Attrib ipv6_dst=fe80    -0.24534515949830937
+    Attrib ipv6_dst=ff02    -0.11240217581822334
+    Attrib frame_len    -0.17539990529101587
+    Attrib mqtt_dupflag    2.7877419623810185
+    Attrib mqtt_hdrflags    2.720810751861547
+    Attrib mqtt_kalive    -0.31381328917571205
+    Attrib mqtt_msgid    -1.8979893079024388
+    Attrib mqtt_msgtype    2.7073280184168014
+    Attrib mqtt_retain    2.7643224648218014
+    Attrib mqtt_len_flag    2.71990042225428
+    Attrib mqtt_len_null=True    0.959463655096365
+Sigmoid Node 8
+    Inputs    Weights
+    Threshold    -0.2447882080107121
+    Attrib ipv6_plen    -0.6420645466853081
+    Attrib ipv6_nxt    4.819005520556818
+    Attrib ipv6_src=fe80    0.3583743974995366
+    Attrib ipv6_dst=fd9e    -0.4117801278102206
+    Attrib ipv6_dst=fe80    0.7218853081926241
+    Attrib ipv6_dst=ff02    -0.10743674317528966
+    Attrib frame_len    -0.5890865841029909
+    Attrib mqtt_dupflag    0.056933145849305526
+    Attrib mqtt_hdrflags    0.24232824341519868
+    Attrib mqtt_kalive    2.4840306451585006
+    Attrib mqtt_msgid    0.37244815952359567
+    Attrib mqtt_msgtype    0.2017050054739097
+    Attrib mqtt_retain    0.0235712953793562
+    Attrib mqtt_len_flag    0.2801119522318912
+    Attrib mqtt_len_null=True    0.19188487167575005
+Sigmoid Node 9
+    Inputs    Weights
+    Threshold    0.08112469067211636
+    Attrib ipv6_plen    -0.29534133292831954
+    Attrib ipv6_nxt    -0.33988387357420385
+    Attrib ipv6_src=fe80    -0.18212140363121043
+    Attrib ipv6_dst=fd9e    0.18286067453145313
+    Attrib ipv6_dst=fe80    -0.15946342440945113
+    Attrib ipv6_dst=ff02    -0.11824761202737506
+    Attrib frame_len    -0.33304405398454917
+    Attrib mqtt_dupflag    2.7572631153161615
+    Attrib mqtt_hdrflags    2.6729022944404224
+    Attrib mqtt_kalive    -0.4693021485556778
+    Attrib mqtt_msgid    -1.9256673935599107
+    Attrib mqtt_msgtype    2.6947648139277294
+    Attrib mqtt_retain    2.780392901097899
+    Attrib mqtt_len_flag    2.636042627168186
+    Attrib mqtt_len_null=True    0.6964005049790503
+Sigmoid Node 10
+    Inputs    Weights
+    Threshold    -0.38797829752998136
+    Attrib ipv6_plen    -2.9210833699366687
+    Attrib ipv6_nxt    7.41455098163711
+    Attrib ipv6_src=fe80    -2.3508273243946265
+    Attrib ipv6_dst=fd9e    0.22308109792214692
+    Attrib ipv6_dst=fe80    2.027994329091899
+    Attrib ipv6_dst=ff02    -1.7996633210372295
+    Attrib frame_len    -2.9027013864736184
+    Attrib mqtt_dupflag    0.19893350850957264
+    Attrib mqtt_hdrflags    0.5003375251467713
+    Attrib mqtt_kalive    7.61823877172684
+    Attrib mqtt_msgid    0.16019118367161725
+    Attrib mqtt_msgtype    0.4968855826397471
+    Attrib mqtt_retain    0.12122683202620822
+    Attrib mqtt_len_flag    0.49601816353910333
+    Attrib mqtt_len_null=True    0.25817392493607244
+Sigmoid Node 11
+    Inputs    Weights
+    Threshold    -7.972147273511369
+    Attrib ipv6_plen    -93.63959787039741
+    Attrib ipv6_nxt    13.141418899323128
+    Attrib ipv6_src=fe80    9.326262922052047
+    Attrib ipv6_dst=fd9e    -8.545086074996737
+    Attrib ipv6_dst=fe80    8.403820387919053
+    Attrib ipv6_dst=ff02    8.051290124196884
+    Attrib frame_len    -93.6643881168161
+    Attrib mqtt_dupflag    11.288175594776659
+    Attrib mqtt_hdrflags    23.06552563602494
+    Attrib mqtt_kalive    5.300842856976796
+    Attrib mqtt_msgid    40.252286777517774
+    Attrib mqtt_msgtype    23.079311555351882
+    Attrib mqtt_retain    11.314286379388607
+    Attrib mqtt_len_flag    23.098400616309622
+    Attrib mqtt_len_null=True    2.0205431881149627
+Sigmoid Node 12
+    Inputs    Weights
+    Threshold    -14.72664487260646
+    Attrib ipv6_plen    -21.633948848638006
+    Attrib ipv6_nxt    15.473962220909865
+    Attrib ipv6_src=fe80    8.36384881364262
+    Attrib ipv6_dst=fd9e    -10.288842022342493
+    Attrib ipv6_dst=fe80    12.051119961982128
+    Attrib ipv6_dst=ff02    12.929110595830856
+    Attrib frame_len    -21.67704364730549
+    Attrib mqtt_dupflag    -55.93318669954132
+    Attrib mqtt_hdrflags    15.22456775352367
+    Attrib mqtt_kalive    -9.207806753036044
+    Attrib mqtt_msgid    47.847699696513295
+    Attrib mqtt_msgtype    15.268736624075819
+    Attrib mqtt_retain    -56.01010898171887
+    Attrib mqtt_len_flag    15.278976515299954
+    Attrib mqtt_len_null=True    -4.603121053373084
+Sigmoid Node 13
+    Inputs    Weights
+    Threshold    -8.057235601463564
+    Attrib ipv6_plen    -42.72865803597634
+    Attrib ipv6_nxt    11.59864774080796
+    Attrib ipv6_src=fe80    10.144403522675942
+    Attrib ipv6_dst=fd9e    -7.403095553515157
+    Attrib ipv6_dst=fe80    7.313978942944343
+    Attrib ipv6_dst=ff02    8.14632745879007
+    Attrib frame_len    -42.733505558627584
+    Attrib mqtt_dupflag    8.808732832930717
+    Attrib mqtt_hdrflags    -2.447857894334748
+    Attrib mqtt_kalive    3.3594074960567384
+    Attrib mqtt_msgid    16.29383197969477
+    Attrib mqtt_msgtype    -2.4830910136701614
+    Attrib mqtt_retain    8.869829617924685
+    Attrib mqtt_len_flag    -2.4549435297576143
+    Attrib mqtt_len_null=True    4.093991296815274
+Sigmoid Node 14
+    Inputs    Weights
+    Threshold    -5.880299658257757
+    Attrib ipv6_plen    7.731469050034918
+    Attrib ipv6_nxt    4.160804691677732
+    Attrib ipv6_src=fe80    3.8898248068140733
+    Attrib ipv6_dst=fd9e    -4.893147934454431
+    Attrib ipv6_dst=fe80    5.000077560697671
+    Attrib ipv6_dst=ff02    5.760796499100733
+    Attrib frame_len    7.735708773776216
+    Attrib mqtt_dupflag    -14.22577049645399
+    Attrib mqtt_hdrflags    11.333103972238195
+    Attrib mqtt_kalive    7.576544588696888
+    Attrib mqtt_msgid    -72.35334279764359
+    Attrib mqtt_msgtype    11.362278282972934
+    Attrib mqtt_retain    -11.038152160324028
+    Attrib mqtt_len_flag    11.344903526463714
+    Attrib mqtt_len_null=True    10.429420037633895
+Class DoS
+    Input
+    Node 0
+Class bruteforce
+    Input
+    Node 1
+Class enumeration
+    Input
+    Node 2
+Class mitm
+    Input
+    Node 3
+Class normal
+    Input
+    Node 4
+
+
+Time taken to build model: 72.64 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       37090               82.6979 %
+Incorrectly Classified Instances      7760               17.3021 %
+Kappa statistic                          0.7837
+Mean absolute error                      0.0913
+Root mean squared error                  0.2122
+Relative absolute error                 28.5419 %
+Root relative squared error             53.0441 %
+Total Number of Instances            44850     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0,961    0,028    0,897      0,961    0,928      0,910    0,993     0,979     DoS
+                 0,928    0,132    0,637      0,928    0,755      0,701    0,936     0,697     bruteforce
+                 0,250    0,025    0,714      0,250    0,370      0,353    0,849     0,595     enumeration
+                 1,000    0,000    0,998      1,000    0,999      0,999    1,000     0,999     mitm
+                 0,995    0,031    0,890      0,995    0,939      0,926    0,991     0,964     normal
+Weighted Avg.    0,827    0,043    0,827      0,827    0,798      0,778    0,954     0,847     
+
+=== Confusion Matrix ===
+
+    a    b    c    d    e   <-- classified as
+ 8623   94  253    0    0 |    a = DoS
+    0 8328  642    0    0 |    b = bruteforce
+  988 4633 2242    0 1107 |    c = enumeration
+    0    0    0 8970    0 |    d = mitm
+    1   24    2   16 8927 |    e = normal
+
