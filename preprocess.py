@@ -26,16 +26,8 @@ data_attack.drop('mqtt.topic_len', axis =1, inplace = True)
 data_attack.columns = data_attack.columns.str.lower().str.replace('.', '_')
 data_attack.to_csv('data_attackv2.csv', index=False, sep =';')
 
-
-#-- Balanceamento da base
-data_attack = pd.read_csv('data_attackv2.csv', sep=';')
-c = data_attack.groupby('label')
-data_attack = c.apply(lambda x: x.sample(n = c.size().min()).reset_index(drop=True))
-data_attack.to_csv('data_attackv3.csv', index=False, sep =';')
-
-
 #-- Tratamento de atributos - Parte I
-data_attack = pd.read_csv('data_attackv3.csv', sep=';')
+data_attack = pd.read_csv('data_attackv2.csv', sep=';')
 
 # Substituindo o endereço ipv6 pela primeira parte
 data_attack['ipv6_src'] = data_attack.apply(lambda x: x['ipv6_src'].split(":")[0], axis=1)
@@ -73,12 +65,12 @@ data_attack['mqtt_len_null'] = data_attack['mqtt_len'].isna()
 data_attack.loc[data_attack[(data_attack['mqtt_len_null']==True)].index,'mqtt_len_flag'] = 0
 data_attack.drop('mqtt_len', axis=1, inplace=True)
 
-data_attack.to_csv('data_attackv4.csv', index=False, sep =',')
+data_attack.to_csv('data_attackv3.csv', index=False, sep =',')
 
-'''
+
 #-- Tratamento de atributos - Parte II
 
-data_attack = pd.read_csv('data_attackv4.csv', sep =',')
+data_attack = pd.read_csv('data_attackv3.csv', sep =',')
 
 # Tratando nominais 
 selec = data_attack[(data_attack['ipv6_src']=='fd9e')].index
@@ -123,14 +115,28 @@ data_attack.loc[enumeration,'label'] = 2
 data_attack.loc[mitm,'label'] = 3
 data_attack.loc[DoS,'label'] = 4
 
+data_attack.to_csv('data_attackv4.csv', index=False, sep =',')
+
+# -- Limpando duplicatas e balanceando a base 
+data_attack = pd.read_csv('data_attackv4.csv', sep =',')
+
+#Excluindo instâncias repetidas
+data_attack.drop_duplicates(inplace= True)
+
+#-- Balanceamento da base
+c = data_attack.groupby('label')
+data_attack = c.apply(lambda x: x.sample(n = c.size().min()).reset_index(drop=True))
+
 data_attack= data_attack.astype('int64')
 data_attack.to_csv('data_attackv5.csv', index=False, sep =',')
-
-
+'''
+# Descrevendo os resultados
 data_attack = pd.read_csv('data_attackv5.csv', sep =',')
+print('Número de elementos por classe')
 print(data_attack['label'].value_counts())
+print('\n Informações dos atributos: número de instâncias não nulas e tipo')
 print(data_attack.info())
-
+print('\n Valores possíveis de cada atributo')
 for i in data_attack.columns:
-	print(i,':', data_attack[i].unique())
+	print(i,':', data_attack[i].sort_values().unique())
 

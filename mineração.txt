@@ -7,31 +7,15 @@
 PRE_PROCESSAMENTOS
 
 v2 - sem atributos irrelevantes 
-v3 - balanceada
 
-v4
+v3
 tratamento nos atributos:
 1- ipv6.src, ipv6.dst - substituídos pela primeira parte do endereço 
-2- mqtt.dupflag, mqtt_hdrflag, mqtt_msgid, mqtt_msgtype, mqtt_retain - substituídos pelo número de informações caso não seja null
-
-- CARACTERÍRSTICAS DA BASE:
-. intâncias: 44850 
-. atributos:
-ipv6_plen         44850 non-null int64  [20 - 1460]
-ipv6_nxt          44850 non-null int64  [ 6, 17, 58]
-ipv6_src          44850 non-null object ['fd9e', 'fe80']
-ipv6_dst          44850 non-null object ['fd9e', 'fe80', 'ff02']
-frame_len         44850 non-null int64  [74 - 1514]
-mqtt_dupflag      11730 non-null object [1, 3, 4, 5, 6, 7, 8, 16, 23, 24, 31, 32, 34, nan]
-mqtt_hdrflags     19647 non-null object [1-19, 23, 24, 31, 32, 34, nan]
-mqtt_kalive       1189 non-null float64  [15, 60, nan]
-mqtt_len          19647 non-null object  ['0' '11' '150' ... '6' '86' nan] *
-mqtt_msgid        9963 non-null object   [1-19, 23, 24, 31, 32, 34, nan]
-mqtt_msgtype      19647 non-null object  [1-19, 23, 24, 31, 32, 34, nan]
-mqtt_retain       11730 non-null object  [1-8, 16, 23, 24, 31, 32, 34, nan]
-label             44850 non-null object  ['DoS', 'bruteforce', 'enumeration', 'mitm', 'normal']
-
+2- mqtt.dupflag, mqtt_hdrflag, mqtt_msgid, mqtt_msgtype, mqtt_retain - substituídos pelo número de informações caso não seja nul
 3- mqtt.dupflag, mqtt_hdrflag, mqtt_msgid, mqtt_msgtype, mqtt_retain,mqtt_kalive, - missing values substituídos por 0 indicando ausência de informações no campo
+4- mqtt_len: substituído por dois atributos
+   mqtt_len_flag: guarda a quantidade de informações no campo
+   mqtt_len_null: guarda a informação se o campo era nulo
 
 - CARACTERÍRSTICAS DA BASE:
 . intâncias: 44850 
@@ -44,28 +28,45 @@ frame_len         44850 non-null int64  [74 - 1514]
 mqtt_dupflag      44850 non-null object [1, 3, 4, 5, 6, 7, 8, 16, 23, 24, 31, 32, 34, 0]
 mqtt_hdrflags     44850 non-null object [1-19, 23, 24, 31, 32, 34, 0]
 mqtt_kalive       44850 non-null float64  [15, 60, 0]
-mqtt_len          19647 non-null object  ['0' '11' '150' ... '6' '86' nan]
 mqtt_msgid        44850 non-null object   [1-19, 23, 24, 31, 32, 34, 0]
 mqtt_msgtype      44850 non-null object  [1-19, 23, 24, 31, 32, 34, 0]
 mqtt_retain       44850 non-null object  [1-8, 16, 23, 24, 31, 32, 34, 0]
+mqtt_len_flag     44850 non-null int64 [ 0 - 19, 23, 24, 31, 32, 34]
+mqtt_len_null     44850 non-null bool  [False , True]
 label             44850 non-null object  ['DoS', 'bruteforce', 'enumeration', 'mitm', 'normal']
 
-4- mqtt_len: 
-   mqtt_len_flag     44850 non-null int64 [ 0 - 19, 23, 24, 31, 32, 34]
-   mqtt_len_null     44850 non-null bool  [False , True]
-RangeIndex: 44850 entries, 0 to 44849
-Data columns (total 14 columns):
-ipv6_plen        44850 non-null int64
-ipv6_nxt         44850 non-null int64
-ipv6_src         44850 non-null object
-ipv6_dst         44850 non-null object
-frame_len        44850 non-null int64
-mqtt_dupflag     44850 non-null int64
-mqtt_hdrflags    44850 non-null int64
-mqtt_kalive      44850 non-null float64
-mqtt_msgid       44850 non-null int64
-mqtt_msgtype     44850 non-null int64
-mqtt_retain      44850 non-null int64
-label            44850 non-null object
-mqtt_len_flag    44850 non-null int64
-mqtt_len_null    44850 non-null bool
+v4
+Tratamento dos atributos nominais 
+ipv6_src: substituído por dois atributos booleanos
+	ipv6_scr_fd
+	ipv6_scr_fe
+ipv6_dst: substituído por dois atributos booleanos 
+	ipv6_dst_fd
+	ipv6_dst_fe
+	ipv6_dst_ff
+label: map{[ 'normal','bruteforce', 'enumeration', 'mitm',  'DoS']: [0,1,2,3,4]}
+
+v5
+Excluidas instâncias repetidas 
+Balanceamento pela menor classe 
+
+-instâncias: 45 
+-Atributos:
+ipv6_plen        45 non-null int64 [ 20  - 1460]
+ipv6_nxt         45 non-null int64 [ 6 17 58]
+frame_len        45 non-null int64 [  74 - 1514]
+mqtt_dupflag     45 non-null int64 [ 0 - 34]
+mqtt_hdrflags    45 non-null int64 [ 0 - 34]
+mqtt_kalive      45 non-null int64 [ 0 - 60]
+mqtt_msgid       45 non-null int64 [0 - 8]
+mqtt_msgtype     45 non-null int64 [ 0 - 34]
+mqtt_retain      45 non-null int64 [ 0 - 34]
+label            45 non-null int64 [0, 1, 2, 3, 4]
+mqtt_len_flag    45 non-null int64 [ 0 - 34]
+mqtt_len_null    45 non-null int64 [0 1]
+ipv6_src_fd      45 non-null int64 [0 1]
+ipv6_src_fe      45 non-null int64 [0 1]
+ipv6_dst_fd      45 non-null int64 [0 1]
+ipv6_dst_fe      45 non-null int64 [0 1]
+ipv6_dst_ff      45 non-null int64 [0 1]
+
