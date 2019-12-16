@@ -1,11 +1,11 @@
 import pandas as pd 
 import numpy as np
-
+import matplotlib.pyplot as plt
 '''
 #-- Redução de atributos irrelevantes
 data_attack = pd.read_csv('attacks.csv', sep=';')
 
-data_attack.drop('frame.time_delta', axis =1, inplace = True)
+#data_attack.drop('frame.time_delta', axis =1, inplace = True)
 data_attack.drop('frame.time_epoch', axis =1, inplace = True)
 data_attack.drop('frame.time_relative', axis =1, inplace = True)
 data_attack.drop('tcp.srcport', axis =1, inplace = True)
@@ -127,7 +127,6 @@ data_attack.drop_duplicates(inplace= True)
 c = data_attack.groupby('label')
 data_attack = c.apply(lambda x: x.sample(n = c.size().min()).reset_index(drop=True))
 
-data_attack= data_attack.astype('int64')
 data_attack.to_csv('data_attackv5.csv', index=False, sep =',')
 '''
 # Descrevendo os resultados
@@ -140,3 +139,6 @@ print('\n Valores possíveis de cada atributo')
 for i in data_attack.columns:
 	print(i,':', data_attack[i].sort_values().unique())
 
+bx = data_attack.boxplot(column=['frame_time_delta'])
+print(bx)
+plt.show()

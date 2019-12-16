@@ -28,8 +28,8 @@ classifiers = [
 
 # Testes 
 results = pd.DataFrame(columns =['Pct_treino', 'Algoritmo', 'Acuracia'])
-pct = 0.1
-while pct< 0.99:
+pct = 0.6
+while pct<= 0.6:
 	print('training with ', str(pct) , "%...")
 	for ext in range(10):
 		X_test = X.sample(frac=pct)
@@ -42,6 +42,7 @@ while pct< 0.99:
 		X_train = X_train.values
 
 		for name, clf in zip(names, classifiers):
+			print(ext, name)
 			clf.fit(X_train, y_train)
 			score = clf.score(X_test, y_test)
 			results.loc[results.shape[0],:] = [pct, name, score]
