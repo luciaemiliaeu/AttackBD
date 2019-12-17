@@ -49,6 +49,14 @@ label: map{[ 'normal','bruteforce', 'enumeration', 'mitm',  'DoS']: [0,1,2,3,4]}
 
 v5
 Excluidas instâncias repetidas 
+-instâncias: 537
+
+Verificando balanceamento:
+DoS            464
+normal          28
+enumeration     25
+bruteforce      11
+mitm             9
 Balanceamento pela menor classe 
 
 -instâncias: 45 
