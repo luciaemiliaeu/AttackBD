@@ -3,6 +3,7 @@
 ! mqtt.dupflag, mqtt_hdrflag, mqtt_msgid, mqtt_msgtype, mqtt_retain - se tiver mais de uma informação no campo pode ser ataque, as informações são separadas por vírgula ( tratar isso ) - não interessa o valor
 ! mqtt.len - se tiver mais de uma informação no campo pode ser ataque, as informações são separadas por vírgula ( tratar isso ) -  interessa o valor, se for maior que o limite
 ! todos os mqtt: não tem valor quando é ataque 
+frame_time_delta format: Seconds. Tenths of a second. Hundredths of a second. Milliseconds. Microseconds. Nanoseconds
 
 PRE_PROCESSAMENTOS
 
@@ -69,4 +70,5 @@ ipv6_src_fe      45 non-null int64 [0 1]
 ipv6_dst_fd      45 non-null int64 [0 1]
 ipv6_dst_fe      45 non-null int64 [0 1]
 ipv6_dst_ff      45 non-null int64 [0 1]
+
 
