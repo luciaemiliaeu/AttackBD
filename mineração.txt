@@ -3,7 +3,7 @@
 ! mqtt.dupflag, mqtt_hdrflag, mqtt_msgid, mqtt_msgtype, mqtt_retain - se tiver mais de uma informação no campo pode ser ataque, as informações são separadas por vírgula ( tratar isso ) - não interessa o valor
 ! mqtt.len - se tiver mais de uma informação no campo pode ser ataque, as informações são separadas por vírgula ( tratar isso ) -  interessa o valor, se for maior que o limite
 ! todos os mqtt: não tem valor quando é ataque 
-frame_time_delta format: Seconds. Tenths of a second. Hundredths of a second. Milliseconds. Microseconds. Nanoseconds
+
 
 PRE_PROCESSAMENTOS
 
@@ -21,6 +21,7 @@ tratamento nos atributos:
 - CARACTERÍRSTICAS DA BASE:
 . intâncias: 44850 
 . atributos:
+frame_time_delta  44850 non-null float64 [4.0000000e-06 - 1.0211065e+01]
 ipv6_plen         44850 non-null int64  [20 - 1460]
 ipv6_nxt          44850 non-null int64  [ 6, 17, 58]
 ipv6_src          44850 non-null object ['fd9e', 'fe80']
@@ -49,34 +50,36 @@ label: map{[ 'normal','bruteforce', 'enumeration', 'mitm',  'DoS']: [0,1,2,3,4]}
 
 v5
 Excluidas instâncias repetidas 
--instâncias: 537
 
-Verificando balanceamento:
-DoS            464
-normal          28
-enumeration     25
-bruteforce      11
-mitm             9
+
 Balanceamento pela menor classe 
+0    200343
+4     93578
+3     21404
+1     10503
+2      4287
 
--instâncias: 45 
+-instâncias:  
 -Atributos:
-ipv6_plen        45 non-null int64 [ 20  - 1460]
-ipv6_nxt         45 non-null int64 [ 6 17 58]
-frame_len        45 non-null int64 [  74 - 1514]
-mqtt_dupflag     45 non-null int64 [ 0 - 34]
-mqtt_hdrflags    45 non-null int64 [ 0 - 34]
-mqtt_kalive      45 non-null int64 [ 0 - 60]
-mqtt_msgid       45 non-null int64 [0 - 8]
-mqtt_msgtype     45 non-null int64 [ 0 - 34]
-mqtt_retain      45 non-null int64 [ 0 - 34]
-label            45 non-null int64 [0, 1, 2, 3, 4]
-mqtt_len_flag    45 non-null int64 [ 0 - 34]
-mqtt_len_null    45 non-null int64 [0 1]
-ipv6_src_fd      45 non-null int64 [0 1]
-ipv6_src_fe      45 non-null int64 [0 1]
-ipv6_dst_fd      45 non-null int64 [0 1]
-ipv6_dst_fe      45 non-null int64 [0 1]
-ipv6_dst_ff      45 non-null int64 [0 1]
+RangeIndex: 21435 entries
+Data columns (total 18 columns):
+frame_time_delta    21435 non-null float64  [4.0000000e-06 - 1.0211065e+01]
+ipv6_plen           21435 non-null int64 [  20  - 1460]
+ipv6_nxt            21435 non-null int64 [ 6 17 58]
+frame_len           21435 non-null int64  [  74  - 1514]
+mqtt_dupflag        21435 non-null int64 [ 0 - 34]
+mqtt_hdrflags       21435 non-null int64 [ 0 - 34]
+mqtt_kalive         21435 non-null float64  [ 0. 15. 60.]
+mqtt_msgid          21435 non-null int64 [ 0 - 19]
+mqtt_msgtype        21435 non-null int64 [ 0 - 34]
+mqtt_retain         21435 non-null int64 [ 0 - 34]
+label               21435 non-null int64 [0 1 2 3 4]
+mqtt_len_flag       21435 non-null int64 [ 0 - 34]
+mqtt_len_null       21435 non-null int64 [0 1]
+ipv6_src_fd         21435 non-null float64 [0 1]
+ipv6_src_fe         21435 non-null float64 [0 1]
+ipv6_dst_fd         21435 non-null float64 [0 1]
+ipv6_dst_fe         21435 non-null float64 [0 1]
+ipv6_dst_ff         21435 non-null float64 [0 1]
 
 

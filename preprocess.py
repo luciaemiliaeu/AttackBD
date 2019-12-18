@@ -1,29 +1,39 @@
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
+
 '''
-#-- Redução de atributos irrelevantes
+#-- Substituição da coluna frame.time_delta
+
 data_attack = pd.read_csv('attacks.csv', sep=';')
-
-#data_attack.drop('frame.time_delta', axis =1, inplace = True)
-data_attack.drop('frame.time_epoch', axis =1, inplace = True)
-data_attack.drop('frame.time_relative', axis =1, inplace = True)
-data_attack.drop('tcp.srcport', axis =1, inplace = True)
-data_attack.drop('tcp.dstport', axis =1, inplace = True)
-data_attack.drop('eth.src', axis =1, inplace = True)
-data_attack.drop('eth.dst', axis =1, inplace = True)
-data_attack.drop('frame.number', axis =1, inplace = True)
-data_attack.drop('mqtt.clientid', axis =1, inplace = True)
-data_attack.drop('mqtt.msg', axis =1, inplace = True)
-data_attack.drop('mqtt.passwd', axis =1, inplace = True)
-data_attack.drop('mqtt.qos', axis =1, inplace = True)
-data_attack.drop('mqtt.topic', axis =1, inplace = True)
-data_attack.drop('mqtt.username', axis =1, inplace = True)
-data_attack.drop('mqtt.willmsg', axis =1, inplace = True)
-data_attack.drop('mqtt.willtopic', axis =1, inplace = True)
-data_attack.drop('mqtt.topic_len', axis =1, inplace = True)
-
 data_attack.columns = data_attack.columns.str.lower().str.replace('.', '_')
+
+data_frame = pd.read_csv('frame.time_delta.txt')
+data_frame.columns = data_frame.columns.str.lower().str.replace('.', '_')
+data_attack.loc[:, 'frame_time_delta'] = data_frame['frame_time_delta']
+
+data_attack.to_csv('attacks2.csv', sep =';', index = False)
+
+#-- Redução de atributos irrelevantes
+data_attack = pd.read_csv('attacks2.csv', sep=';')
+
+data_attack.drop('frame_time_epoch', axis =1, inplace = True)
+data_attack.drop('frame_time_relative', axis =1, inplace = True)
+data_attack.drop('tcp_srcport', axis =1, inplace = True)
+data_attack.drop('tcp_dstport', axis =1, inplace = True)
+data_attack.drop('eth_src', axis =1, inplace = True)
+data_attack.drop('eth_dst', axis =1, inplace = True)
+data_attack.drop('frame_number', axis =1, inplace = True)
+data_attack.drop('mqtt_clientid', axis =1, inplace = True)
+data_attack.drop('mqtt_msg', axis =1, inplace = True)
+data_attack.drop('mqtt_passwd', axis =1, inplace = True)
+data_attack.drop('mqtt_qos', axis =1, inplace = True)
+data_attack.drop('mqtt_topic', axis =1, inplace = True)
+data_attack.drop('mqtt_username', axis =1, inplace = True)
+data_attack.drop('mqtt_willmsg', axis =1, inplace = True)
+data_attack.drop('mqtt_willtopic', axis =1, inplace = True)
+data_attack.drop('mqtt_topic_len', axis =1, inplace = True)
+
 data_attack.to_csv('data_attackv2.csv', index=False, sep =';')
 
 #-- Tratamento de atributos - Parte I
@@ -122,7 +132,7 @@ data_attack = pd.read_csv('data_attackv4.csv', sep =',')
 
 #Excluindo instâncias repetidas
 data_attack.drop_duplicates(inplace= True)
-
+print(data_attack['label'].value_counts())
 #-- Balanceamento da base
 c = data_attack.groupby('label')
 data_attack = c.apply(lambda x: x.sample(n = c.size().min()).reset_index(drop=True))
@@ -136,9 +146,7 @@ print(data_attack['label'].value_counts())
 print('\n Informações dos atributos: número de instâncias não nulas e tipo')
 print(data_attack.info())
 print('\n Valores possíveis de cada atributo')
+
 for i in data_attack.columns:
 	print(i,':', data_attack[i].sort_values().unique())
 
-bx = data_attack.boxplot(column=['frame_time_delta'])
-print(bx)
-plt.show()
